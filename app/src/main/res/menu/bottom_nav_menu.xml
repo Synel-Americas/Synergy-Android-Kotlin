@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:title="@string/attendance" />
+    <item
+        android:id="@+id/_break"
+        android:icon="@drawable/break_icon"
+        android:title="@string/_break" />
+    <item
+        android:id="@+id/nav_lunch"
+        android:icon="@drawable/lunch"
+        android:title="@string/lunch" />
+    <item
+        android:id="@+id/nav_transfer"
+        android:icon="@drawable/transfer"
+        android:title="@string/transfer" />
+
+<!--    <item-->
+<!--        android:id="@+id/nav_keypad"-->
+<!--        android:icon="@drawable/ic_keypad_icon"-->
+<!--        android:title="@string/keypad" />-->
+</menu>

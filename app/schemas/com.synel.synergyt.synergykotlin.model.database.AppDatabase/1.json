@@ -1,0 +1,178 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "deb5b23c345308ca36624382ffe124de",
+    "entities": [
+      {
+        "tableName": "Employee",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`badgeNumber` TEXT NOT NULL, `badgeAltNumber` TEXT NOT NULL, `clock_action` TEXT NOT NULL, `devicePassword` TEXT NOT NULL, `deviceRoleId` TEXT NOT NULL, `deviceVerifyMode` TEXT NOT NULL, `employeeNumber` TEXT NOT NULL, `enableMealAttestation` TEXT NOT NULL, `enableMealLockout` TEXT NOT NULL, `enforceSchedule` INTEGER NOT NULL, `faceAttestationAccepted` INTEGER NOT NULL, `faceAttestationDate` TEXT NOT NULL, `faceAttestationDeviceSn` TEXT NOT NULL, `firstName` TEXT NOT NULL, `formattedName` TEXT NOT NULL, `fpAttestationAccepted` INTEGER NOT NULL, `fpAttestationDate` TEXT NOT NULL, `fpAttestationDeviceSn` TEXT NOT NULL, `managerEmployeeNum` TEXT NOT NULL, `mealBreakLockoutPeriod` TEXT NOT NULL, `submitted_date` TEXT NOT NULL, `sync_sent_time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL, `transactionId` INTEGER NOT NULL, `updated_date` TEXT NOT NULL, PRIMARY KEY(`badgeNumber`))",
+        "fields": [
+          {
+            "fieldPath": "badgeNumber",
+            "columnName": "badgeNumber",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "badgeAltNumber",
+            "columnName": "badgeAltNumber",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "clock_action",
+            "columnName": "clock_action",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "devicePassword",
+            "columnName": "devicePassword",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deviceRoleId",
+            "columnName": "deviceRoleId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deviceVerifyMode",
+            "columnName": "deviceVerifyMode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "employeeNumber",
+            "columnName": "employeeNumber",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableMealAttestation",
+            "columnName": "enableMealAttestation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableMealLockout",
+            "columnName": "enableMealLockout",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enforceSchedule",
+            "columnName": "enforceSchedule",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "faceAttestationAccepted",
+            "columnName": "faceAttestationAccepted",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "faceAttestationDate",
+            "columnName": "faceAttestationDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "faceAttestationDeviceSn",
+            "columnName": "faceAttestationDeviceSn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstName",
+            "columnName": "firstName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "formattedName",
+            "columnName": "formattedName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fpAttestationAccepted",
+            "columnName": "fpAttestationAccepted",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fpAttestationDate",
+            "columnName": "fpAttestationDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fpAttestationDeviceSn",
+            "columnName": "fpAttestationDeviceSn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "managerEmployeeNum",
+            "columnName": "managerEmployeeNum",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mealBreakLockoutPeriod",
+            "columnName": "mealBreakLockoutPeriod",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "submitted_date",
+            "columnName": "submitted_date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sync_sent_time",
+            "columnName": "sync_sent_time",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sync_status",
+            "columnName": "sync_status",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "transactionId",
+            "columnName": "transactionId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updated_date",
+            "columnName": "updated_date",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "badgeNumber"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'deb5b23c345308ca36624382ffe124de')"
+    ]
+  }
+}
