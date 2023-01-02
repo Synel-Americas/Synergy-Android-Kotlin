@@ -16,28 +16,109 @@
         android:weightSum="4"
         android:baselineAligned="false"
         >
-        <FrameLayout
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="2.5"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:weightSum="3"
             >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hello World!" />
-        </FrameLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/round_edge"
+                android:focusedByDefault="false"
+                android:layout_marginHorizontal="75dp"
+                android:textAlignment="center"
+                android:hint="Badge Number!"
+                android:inputType="number"
+                android:textSize="20sp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="15dp"
+                    >
+                    <FrameLayout
+                        android:id="@+id/out"
+                        android:layout_gravity="center|end"
+                        android:background="@drawable/cool_button_background_pressed"
+                        android:backgroundTintMode="screen"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="IN"
+                            android:textSize="30sp"
+                            />
+
+                    </FrameLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="15dp"
+                    >
+                    <FrameLayout
+                        android:id="@+id/in"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_gravity="center|start"
+                        android:background="@drawable/cool_button_background"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Out"
+                            android:textSize="30sp"
+                            />
+
+                    </FrameLayout>
+                </FrameLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.5"
-            android:background="@color/black"
-            />
+            android:layout_weight="2"
+            >
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainerView"
+                android:name="com.synel.synergyt.synergykotlin.view.BasicFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout="@layout/fragment_basic" />
+        </FrameLayout>
 
 
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/bottom_navigation_frame"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -55,6 +136,7 @@
             app:itemTextAppearanceActive="@style/BottomNavTextAppearance"/>
 
     </FrameLayout>
+
 
 
 
