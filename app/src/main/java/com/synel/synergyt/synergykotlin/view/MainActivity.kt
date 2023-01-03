@@ -2,27 +2,37 @@ package com.synel.synergyt.synergykotlin.view
 
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.WindowManager
+import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.synel.synergyt.synergykotlin.R
+import com.synel.synergyt.synergykotlin.databinding.ActivityMainBinding
 import com.synel.synergyt.synergykotlin.di.MainViewModelFactory
 import com.synel.synergyt.synergykotlin.model.database.Employee
 import com.synel.synergyt.synergykotlin.viewmodel.MainViewModel
+import com.synel.synergyt.synergykotlin.viewmodel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityMainBinding
+
     @Inject
     lateinit var viewModelFactory: MainViewModelFactory
+    private lateinit var sharedViewModel: SharedViewModel
 
     private val TAG = "MainActivity"
 
@@ -30,11 +40,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
         setFullscreen()
 
 
         viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+        sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
         val employee = Employee(
             badgeNumber = "1256",
@@ -74,15 +86,66 @@ class MainActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.temp).text = viewModel.employees.value?.firstName ?: "wew"
         })
 
+        binding.badgeEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                Log.d(TAG, "beforeTextChanged: DATA CHANGED................ .......")
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                Log.d(TAG, "onTextChanged: DATA CHANGED................ .......")
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                Log.d(TAG, "afterTextChanged: DATA CHANGED................ .......")
+                viewModel.getEmployee(s.toString())
+            }
+        })
+
+
         val frameLayout = findViewById<FrameLayout>(R.id.out)
         frameLayout.setOnClickListener {
             // Do something when the frame layout is clicked
-            Log.d(TAG, "on click--------------- " + employee.badgeNumber)
+            Log.d(TAG, "on click--------------- ")
 //            viewModel.addEmployee(employee)
-            viewModel.getEmployee("1256")
+
         }
 
 
+        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home -> {
+                    // Handle navigation to menu item 1
+                    Log.d(TAG, "bottomNavigation: 1")
+                    binding.inText.text = "IN"
+                    binding.outText.text = "Out"
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.nav_lunch -> {
+                    // Handle navigation to menu item 2
+                    Log.d(TAG, "bottomNavigation: 2")
+                    binding.inText.text = "Start Lunch"
+                    binding.outText.text = "End Lunch"
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id._break -> {
+                    // Handle navigation to menu item 2
+                    Log.d(TAG, "bottomNavigation: 3")
+                    binding.inText.text = "Start Break"
+                    binding.outText.text = "End Break"
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.nav_transfer -> {
+                    // Handle navigation to menu item 2
+                    Log.d(TAG, "bottomNavigation: 4")
+                    binding.inText.text = "IN"
+                    binding.outText.text = "Out"
+                    return@setOnNavigationItemSelectedListener true
+                }
+
+                // Add additional cases for other menu items here
+            }
+            false
+        }
 
     }
     private fun setFullscreen() {

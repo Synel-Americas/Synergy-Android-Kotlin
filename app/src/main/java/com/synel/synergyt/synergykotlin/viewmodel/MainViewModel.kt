@@ -1,5 +1,6 @@
 package com.synel.synergyt.synergykotlin.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,6 +19,7 @@ class MainViewModel @Inject constructor(
     private val _text = MutableLiveData<String>().apply {
         value = "Hello, World!"
     }
+    val userName = MutableLiveData<String>()
     val text: LiveData<String> = _text
 
     fun updateText() {
@@ -29,8 +31,12 @@ class MainViewModel @Inject constructor(
 
     fun getEmployee(badgeNumber: String) {
         viewModelScope.launch {
-            val employees = database.employeeDao().getEmployeeByBadgeNumber(badgeNumber)
-            _employees.postValue(employees)
+            val employee = database.employeeDao().getEmployeeByBadgeNumber(badgeNumber)
+            if (employee != null) {
+                userName.postValue(employee.formattedName)
+            } else {
+                userName.postValue("")
+            }
         }
     }
 
@@ -41,5 +47,10 @@ class MainViewModel @Inject constructor(
             database.employeeDao().insert(employee)
         }
 
+    }
+
+    fun setUserName(badgeNumber:String) {
+        Log.d("MainAcitivytViewModel", "setUserName manual postValue: $badgeNumber")
+        userName.postValue(badgeNumber)
     }
 }
