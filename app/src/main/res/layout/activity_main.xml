@@ -23,10 +23,12 @@
             android:orientation="vertical"
             android:weightSum="3"
             >
-            <View
+            <TextView
+                android:id="@+id/temp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
+                android:textColor="@color/black"
                 />
             <EditText
                 android:layout_width="match_parent"
@@ -58,7 +60,8 @@
                         android:background="@drawable/cool_button_background_pressed"
                         android:backgroundTintMode="screen"
                         android:layout_width="140dp"
-                        android:layout_height="140dp">
+                        android:layout_height="140dp"
+                        >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

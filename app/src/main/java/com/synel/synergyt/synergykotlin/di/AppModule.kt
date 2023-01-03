@@ -1,5 +1,8 @@
 package com.synel.synergyt.synergykotlin.di
 
+import android.app.Application
+import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
 import com.synel.synergyt.synergykotlin.model.database.AppDatabase
 import com.synel.synergyt.synergykotlin.model.database.EmployeeDao
 import com.synel.synergyt.synergykotlin.model.webservice.WebServiceAPI
@@ -28,7 +31,19 @@ object AppModule {
         retrofit.create(WebServiceAPI::class.java)
 
     @Provides
+    @Singleton
+    fun provideDatabase(application: Application): AppDatabase {
+        return Room.databaseBuilder(application, AppDatabase::class.java, "app_database")
+            .build()
+    }
+
+    @Provides
+    @Singleton
     fun provideEmployeeDao(database: AppDatabase): EmployeeDao {
         return database.employeeDao()
+    }
+    @Provides
+    fun provideMainViewModelFactory(database: AppDatabase, apiService: WebServiceAPI): MainViewModelFactory {
+        return MainViewModelFactory(database, apiService)
     }
 }

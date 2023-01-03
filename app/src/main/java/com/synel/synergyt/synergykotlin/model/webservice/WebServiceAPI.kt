@@ -16,7 +16,7 @@ import retrofit2.http.Query
 interface WebServiceAPI {
 
     companion object {
-        const val BASE_URL = ""
+        const val BASE_URL = "https://example.com"
     }
 
     @GET("provision")

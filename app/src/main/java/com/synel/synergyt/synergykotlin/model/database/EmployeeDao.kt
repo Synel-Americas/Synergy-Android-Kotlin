@@ -1,5 +1,6 @@
 package com.synel.synergyt.synergykotlin.model.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.synel.synergyt.synergykotlin.model.database.Employee
 
@@ -8,8 +9,8 @@ interface EmployeeDao {
     @Query("SELECT * FROM employee")
     suspend fun getAll(): List<Employee>
 
-    @Insert
-    suspend fun insert(employee: Employee)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(employee: Employee)
 
     @Update
     suspend fun update(employee: Employee)
