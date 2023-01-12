@@ -8,34 +8,47 @@ import com.synel.synergyt.synergykotlin.model.webservice.data.attlogs.AttLogsRes
 import com.synel.synergyt.synergykotlin.model.webservice.data.devicecmd.DeviceCmdRequest
 import com.synel.synergyt.synergykotlin.model.webservice.data.employees.EmployeesResponse
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface WebServiceAPI {
-
+////http://104.209.159.19:8006/ZKAndroid/api_v1/123456789
     companion object {
-        const val BASE_URL = "https://example.com"
+        const val BASE_URL = "http://104.209.159.19:8006/"
     }
 
-    @GET("provision")
-    suspend fun provision(@Query("stamp") stamp: String): Response<ProvisionResponse>
+    @GET("ZKAndroid/api_v1/{sn}/provision")
+    suspend fun provision(
+        @Path("sn") serialNum: String,
+        @Query("stamp") stamp: String
+    ): Response<ProvisionResponse>
 
-    @GET("heartbeat")
-    suspend fun heartbeat(@Query("stamp") stamp: String): Response<HeartbeatResponse>
+    @GET("ZKAndroid/api_v1/{sn}/heartbeat")
+    suspend fun heartbeat(
+        @Path("sn") serialNum: String,
+        @Query("stamp") stamp: String
+    ): Response<HeartbeatResponse>
 
-    @POST("devicecmd")
-    suspend fun devicecmd(@Body request: DeviceCmdRequest): Response<Void>
+    @POST("ZKAndroid/api_v1/{sn}/devicecmd")
+    suspend fun devicecmd(
+        @Path("sn") serialNum: String,
+        @Body request: DeviceCmdRequest
+    ): Response<Void>
 
     @POST("attlogs")
-    suspend fun attlogs(@Body request: AttLogsRequest): Response<AttLogsResponse>
+    suspend fun attlogs(
+        @Path("sn") serialNum: String,
+        @Body request: AttLogsRequest
+    ): Response<AttLogsResponse>
 
     @GET("employees")
-    suspend fun employees(@Query("stamp") stamp: String): Response<EmployeesResponse>
+    suspend fun employees(
+        @Path("sn") serialNum: String,
+        @Query("stamp") stamp: String
+    ): Response<EmployeesResponse>
 
-    @GET("fastpunch")
+    @POST("ZKAndroid/api_v1/{sn}/attlogs/fastpunch")
     suspend fun fastpunch(
+        @Path("sn") serialNum: String,
         @Query("stamp") stamp: String,
         @Query("ruleType") ruleType: String,
         @Query("longestHours") longestHours: Int
