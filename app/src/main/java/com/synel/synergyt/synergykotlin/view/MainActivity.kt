@@ -14,6 +14,7 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.synel.synergyt.synergykotlin.R
@@ -111,41 +112,41 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            var fragment: Fragment? = null
             when (item.itemId) {
                 R.id.home -> {
                     // Handle navigation to menu item 1
+                    fragment = InOutFragment.newInstance("OUT", "IN", "Fragment 1")
                     Log.d(TAG, "bottomNavigation: 1")
-                    binding.inText.text = "IN"
-                    binding.outText.text = "Out"
-                    return@setOnNavigationItemSelectedListener true
                 }
                 R.id.nav_lunch -> {
                     // Handle navigation to menu item 2
+                    fragment = InOutFragment.newInstance("Lunch OUT", "Lunch IN", "Fragment 2")
                     Log.d(TAG, "bottomNavigation: 2")
-                    binding.inText.text = "Start Lunch"
-                    binding.outText.text = "End Lunch"
-                    return@setOnNavigationItemSelectedListener true
                 }
                 R.id._break -> {
                     // Handle navigation to menu item 2
+                    fragment = InOutFragment.newInstance("Break OUT", "Break IN", "Fragment 3")
                     Log.d(TAG, "bottomNavigation: 3")
-                    binding.inText.text = "Start Break"
-                    binding.outText.text = "End Break"
-                    return@setOnNavigationItemSelectedListener true
                 }
                 R.id.nav_transfer -> {
                     // Handle navigation to menu item 2
+                    fragment = InOutFragment.newInstance("Label 1", "Label 2", "Fragment 4")
                     Log.d(TAG, "bottomNavigation: 4")
-                    binding.inText.text = "IN"
-                    binding.outText.text = "Out"
-                    return@setOnNavigationItemSelectedListener true
                 }
 
                 // Add additional cases for other menu items here
             }
-            false
+            fragment?.let {
+                supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_in_right)
+                    .replace(R.id.fragment_container, it)
+                    .commit()
+            }
+            true
         }
+        binding.bottomNavigation.selectedItemId = R.id.home;
 
     }
     private fun setFullscreen() {
