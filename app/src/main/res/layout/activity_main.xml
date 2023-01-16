@@ -54,8 +54,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:layout_marginLeft="20dp"
                             android:layout_gravity="center|start"
-                            android:src="@drawable/ic_frontline_logo_light"
+                            android:src="@drawable/empeon_white"
                             />
                         <View
                             android:layout_width="0dp"
