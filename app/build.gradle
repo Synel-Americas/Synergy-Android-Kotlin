@@ -35,6 +35,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "java.util.Date", "BUILD_TIME", "new java.util.Date(" + System.currentTimeMillis() + "L)"
+        }
+        debug {
+            buildConfigField "java.util.Date", "BUILD_TIME", "new java.util.Date(" + System.currentTimeMillis() + "L)"
         }
     }
     compileOptions {
@@ -66,10 +70,11 @@ dependencies {
     def retrofit_version = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
     implementation "com.squareup.okhttp3:okhttp:4.9.0"
 
     // Room database
-    def room_version = "2.4.3"
+    def room_version = "2.5.0"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     // For Kotlin use kapt instead of annotationProcessor
@@ -80,6 +85,15 @@ dependencies {
     def Dagger_hilt_version = "2.44"
     implementation("com.google.dagger:hilt-android:$Dagger_hilt_version")
     kapt("com.google.dagger:hilt-android-compiler:$Dagger_hilt_version")
+
+    //Timber logging
+    def timberVer="4.7.1"
+    implementation "com.jakewharton.timber:timber:$timberVer"
+
+    //Kotlin Coroutines
+    def coroutinesVersion="1.6.4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 }
 
 // Allow references to generated code
