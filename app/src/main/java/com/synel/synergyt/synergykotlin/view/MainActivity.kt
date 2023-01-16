@@ -81,35 +81,8 @@ class MainActivity : AppCompatActivity() {
             // data has changed
         })
 
-        viewModel.employees.observe(this, Observer {
-            // data has changed
-            Log.d(TAG, "onCreate: Employee has changed 00000000000000000000000000000000")
-            findViewById<TextView>(R.id.temp).text = viewModel.employees.value?.firstName ?: "wew"
-        })
-
-        binding.badgeEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                Log.d(TAG, "beforeTextChanged: DATA CHANGED................ .......")
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                Log.d(TAG, "onTextChanged: DATA CHANGED................ .......")
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                Log.d(TAG, "afterTextChanged: DATA CHANGED................ .......")
-                viewModel.getEmployee(s.toString())
-            }
-        })
 
 
-        val frameLayout = findViewById<FrameLayout>(R.id.out)
-        frameLayout.setOnClickListener {
-            // Do something when the frame layout is clicked
-            Log.d(TAG, "on click--------------- ")
-//            viewModel.addEmployee(employee)
-
-        }
 
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
@@ -117,17 +90,17 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.home -> {
                     // Handle navigation to menu item 1
-                    fragment = InOutFragment.newInstance("OUT", "IN", "Fragment 1")
+                    fragment = InOutFragment.newInstance("Clock Out", "Clock In", "Fragment 1")
                     Log.d(TAG, "bottomNavigation: 1")
                 }
                 R.id.nav_lunch -> {
                     // Handle navigation to menu item 2
-                    fragment = InOutFragment.newInstance("Lunch OUT", "Lunch IN", "Fragment 2")
+                    fragment = InOutFragment.newInstance("Start Lunch", "End Lunch", "Fragment 2")
                     Log.d(TAG, "bottomNavigation: 2")
                 }
                 R.id._break -> {
                     // Handle navigation to menu item 2
-                    fragment = InOutFragment.newInstance("Break OUT", "Break IN", "Fragment 3")
+                    fragment = InOutFragment.newInstance("Start Break", "End Break", "Fragment 3")
                     Log.d(TAG, "bottomNavigation: 3")
                 }
                 R.id.nav_transfer -> {

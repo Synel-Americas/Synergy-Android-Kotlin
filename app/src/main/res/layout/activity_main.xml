@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true"
+        android:background="@color/backgroundColor"
         android:orientation="vertical"
         android:weightSum="4"
         tools:context=".view.MainActivity">
@@ -26,33 +27,29 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.7"
+                android:layout_weight="2"
                 android:orientation="vertical"
-                android:weightSum="3">
+                android:weightSum="4">
+
 
                 <TextView
-                    android:id="@+id/temp"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.5"
-                    android:textColor="@color/black" />
-
-                <EditText
-                    android:id="@+id/badge_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginHorizontal="75dp"
-                    android:layout_weight="0.5"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_weight="1.5"
+                    android:textSize="50sp"
+                    android:text="Company Name"
                     android:background="@drawable/round_edge"
-                    android:focusedByDefault="false"
-                    android:hint="Badge Number!"
-                    android:inputType="number"
-                    android:textAlignment="center"
-                    android:textSize="35sp" />
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    />
+
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="2"
+                    android:layout_weight="2.5"
+                    android:layout_marginHorizontal="20dp"
                 >
 
                     <androidx.fragment.app.FragmentContainerView
@@ -65,71 +62,6 @@
 
                 </FrameLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-
-
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                        <FrameLayout
-                            android:id="@+id/out"
-                            android:layout_width="140dp"
-                            android:layout_height="140dp"
-                            android:layout_gravity="center|end"
-                            android:layout_margin="15dp"
-                            android:background="@drawable/cool_button_background_pressed"
-                            android:backgroundTintMode="screen"
-                            android:elevation="10dp">
-
-                            <TextView
-                                android:id="@+id/in_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="IN"
-                                android:textSize="30sp"
-                                android:textStyle="bold" />
-
-                        </FrameLayout>
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                        <FrameLayout
-                            android:id="@+id/in"
-                            android:layout_width="140dp"
-                            android:layout_height="140dp"
-                            android:layout_gravity="center|start"
-                            android:layout_margin="15dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/cool_button_background"
-                            android:elevation="10dp">
-
-                            <TextView
-                                android:id="@+id/out_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="Out"
-                                android:textSize="30sp"
-                                android:textStyle="bold" />
-
-                        </FrameLayout>
-                    </FrameLayout>
-
-
-                </LinearLayout>
 
             </LinearLayout>
 
@@ -137,38 +69,109 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2.3">
+                android:layout_weight="2"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="50dp">
 
-                <androidx.fragment.app.FragmentContainerView
-                    android:id="@+id/fragmentContainerView"
-                    android:name="com.synel.synergyt.synergykotlin.view.BasicFragment"
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:layout="@layout/fragment_basic" />
+
+
+                    android:background="@drawable/round_edge"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="5"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:layout_margin="50dp"
+                        android:textSize="50sp"
+                        android:text="Badge Number!"
+                        android:backgroundTint="#C15ECC"
+                        android:background="@drawable/round_edge"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        />
+                    <TextView
+                        android:id="@+id/server_message"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textSize="30sp"
+                        android:text="Server Message!"
+                        android:gravity="center"
+
+                        />
+                    <TextClock
+                        android:id="@+id/textview_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center|start"
+                        android:format12Hour="hh:mm:ss a"
+                        android:format24Hour="hh:mm:ss"
+                        android:inputType="datetime"
+                        android:textSize="110sp"
+                        android:textStyle="bold"
+                        android:layout_weight="2"
+                        android:gravity="center|bottom"
+                        android:layout_marginBottom="30dp"
+                        />
+                </LinearLayout>
+                <TextClock
+                    android:id="@+id/text_clock_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:format12Hour="EEEE MMM dd, yyyy a"
+                    android:format24Hour="EEEE MMM dd, yyyy a"
+                    android:inputType="datetime"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_grey"
+                    android:layout_weight="2"
+                    android:gravity="bottom|center"
+                    android:layout_marginBottom="10dp"
+                    />
+
             </FrameLayout>
 
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            />
+
         <FrameLayout
             android:id="@+id/bottom_navigation_frame"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_weight="1">
+            android:layout_weight="0.8">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigation"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:background="@color/backgroundColor"
+                android:layout_gravity="bottom|center"
+                app:itemBackground="?attr/selectableItemBackground"
+                app:itemRippleColor="@color/black"
                 app:labelVisibilityMode="labeled"
                 app:itemIconSize="70dp"
-                app:itemTextAppearanceActive="@style/BottomNavTextAppearance"
-                app:menu="@menu/bottom_nav_menu"
-                app:shapeAppearanceOverlay="@drawable/bottom_nav_shape" />
+                app:itemIconTint="@drawable/bottom_navigation_selector"
+                app:itemTextAppearanceActive="@style/BottomNavActiveTextAppearance"
+                app:itemTextAppearanceInactive="@style/BottomNavInactiveTextAppearance"
+                app:itemTextColor="@drawable/bottom_navigation_selector"
+                app:menu="@menu/bottom_nav_menu" />
 
         </FrameLayout>
 

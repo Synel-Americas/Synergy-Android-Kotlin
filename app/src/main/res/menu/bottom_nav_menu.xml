@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/home"
         android:icon="@drawable/home"
-        android:title="@string/attendance" />
+        android:title="@string/attendance"/>
     <item
         android:id="@+id/_break"
         android:icon="@drawable/break_icon"
@@ -12,7 +13,8 @@
     <item
         android:id="@+id/nav_lunch"
         android:icon="@drawable/lunch"
-        android:title="@string/lunch" />
+        android:title="@string/lunch"
+        />
     <item
         android:id="@+id/nav_transfer"
         android:icon="@drawable/transfer"
