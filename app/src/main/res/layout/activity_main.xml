@@ -32,18 +32,58 @@
                 android:weightSum="4">
 
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginHorizontal="50dp"
                     android:layout_marginTop="50dp"
+
+
+                    android:layout_marginHorizontal="50dp"
                     android:layout_weight="1.5"
-                    android:textSize="50sp"
-                    android:text="Company Name"
-                    android:background="@drawable/round_edge"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    />
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:background="@drawable/round_edge"
+                        android:weightSum="2"
+                        >
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center|start"
+                            android:src="@drawable/ic_frontline_logo_light"
+                            />
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.9" />
+                        <ImageView
+                            android:id="@+id/ws"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="20dp"
+                            android:background="@android:drawable/presence_online" />
+
+
+                    </LinearLayout>
+
+
+<!--                    <TextView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:textSize="50sp"-->
+<!--                        android:layout_marginStart="15dp"-->
+<!--                        android:layout_gravity="top"-->
+<!--                        />-->
+                </LinearLayout>
+
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -91,8 +131,20 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="2"
-                        android:layout_margin="50dp"
+                        android:layout_weight="1"
+                        android:layout_margin="25dp"
+                        android:textSize="50sp"
+                        android:text="Company Name"
+                        android:background="@drawable/round_edge"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        />
+                    <TextView
+                        android:id="@+id/badge_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_margin="25dp"
                         android:textSize="50sp"
                         android:text="Badge Number!"
                         android:backgroundTint="#C15ECC"

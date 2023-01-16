@@ -9,6 +9,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -83,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
+        binding.badgeNumber.startAnimation(AnimationUtils.loadAnimation(this, R.anim.blink))
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             var fragment: Fragment? = null
