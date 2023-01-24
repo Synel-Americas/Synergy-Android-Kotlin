@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.synel.synergyt.synergykotlin.viewmodel.MainViewModel" />
+    </data>
 
     <LinearLayout
 
@@ -121,7 +126,20 @@
 
                     android:background="@drawable/round_edge"
                     />
-
+                <TextClock
+                    android:id="@+id/text_clock_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:format12Hour="EEEE MMM dd, yyyy a"
+                    android:format24Hour="EEEE MMM dd, yyyy a"
+                    android:inputType="datetime"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_grey"
+                    android:layout_weight="2"
+                    android:gravity="bottom|center"
+                    android:layout_marginBottom="10dp"
+                    />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -153,6 +171,8 @@
                         android:textStyle="bold"
                         android:gravity="center"
                         />
+
+
                     <TextView
                         android:id="@+id/server_message"
                         android:layout_width="match_parent"
@@ -168,7 +188,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_gravity="center|start"
-                        android:format12Hour="hh:mm:ss a"
+                        android:format12Hour="hh:mm:ss"
                         android:format24Hour="hh:mm:ss"
                         android:inputType="datetime"
                         android:textSize="110sp"
@@ -178,20 +198,7 @@
                         android:layout_marginBottom="30dp"
                         />
                 </LinearLayout>
-                <TextClock
-                    android:id="@+id/text_clock_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:format12Hour="EEEE MMM dd, yyyy a"
-                    android:format24Hour="EEEE MMM dd, yyyy a"
-                    android:inputType="datetime"
-                    android:textSize="40sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/text_grey"
-                    android:layout_weight="2"
-                    android:gravity="bottom|center"
-                    android:layout_marginBottom="10dp"
-                    />
+
 
             </FrameLayout>
 

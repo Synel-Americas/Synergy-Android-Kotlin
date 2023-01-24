@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/keypad_fragment"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="100dp"
+    tools:context=".view.KeypadFragment"
+    android:layout_gravity="center">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        android:weightSum="6">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8.5" />
+
+            <ImageView
+                android:id="@+id/button_x"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textview_badge_num"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="50dp"
+
+            android:layout_marginBottom="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="#3C3F41"
+            android:textSize="60sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/button_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/kaypad_key_color"
+                android:contextClickable="false"
+                app:cardCornerRadius="20dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/num1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="1"
+
+                        android:textSize="50sp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/button_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/kaypad_key_color"
+                app:cardCornerRadius="20dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/num2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="2"
+
+                        android:textSize="50sp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/button_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@color/kaypad_key_color"
+                app:cardCornerRadius="20dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/num3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="3"
+
+                        android:textSize="50sp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/button_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/kaypad_key_color"
+                android:contextClickable="false"
+                app:cardCornerRadius="20dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/num4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="4"
+                        android:textSize="50sp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/button_5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/kaypad_key_color"
+                app:cardCornerRadius="20dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/num5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="5"
+
+                        android:textSize="50sp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/button_6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@color/kaypad_key_color"
+                app:cardCornerRadius="20dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/num6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="6"
+
+                        android:textSize="50sp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/button_7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/kaypad_key_color"
+                android:contextClickable="false"
+                app:cardCornerRadius="20dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/num7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="7"
+
+                        android:textSize="50sp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/button_8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/kaypad_key_color"
+                app:cardCornerRadius="20dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/num8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="8"
+
+                        android:textSize="50sp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/button_9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@color/kaypad_key_color"
+                app:cardCornerRadius="20dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/num9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="9"
+
+                        android:textSize="50sp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/button_10"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/kaypad_key_color"
+                android:contextClickable="false"
+                app:cardCornerRadius="20dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/num10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="CLR"
+
+                        android:textSize="50sp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/button_0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/kaypad_key_color"
+                app:cardCornerRadius="20dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/num0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="0"
+
+                        android:textSize="50sp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/button_ok"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#56C2A3"
+                app:cardCornerRadius="20dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/numok"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_centerInParent="true"
+                        android:text="OK"
+
+                        android:textSize="50sp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
