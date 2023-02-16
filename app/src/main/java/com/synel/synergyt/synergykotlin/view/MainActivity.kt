@@ -25,6 +25,7 @@ import com.synel.synergyt.synergykotlin.model.database.Employee
 import com.synel.synergyt.synergykotlin.viewmodel.MainViewModel
 import com.synel.synergyt.synergykotlin.viewmodel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -42,12 +43,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         setFullscreen()
 
 
-        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+
         sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
         val employee = Employee(
@@ -86,6 +90,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.badgeNumber.startAnimation(AnimationUtils.loadAnimation(this, R.anim.blink))
 
+        binding.badgeNumber.setOnClickListener(
+            showKeypadDialog()
+        )
+
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             var fragment: Fragment? = null
             when (item.itemId) {
@@ -122,7 +130,22 @@ class MainActivity : AppCompatActivity() {
         }
         binding.bottomNavigation.selectedItemId = R.id.home;
 
+//        val dialog = KeypadFragment.newInstance("parm1", "parm2")
+//        dialog.show(supportFragmentManager, "KeypadDialog")
+
     }
+
+    private fun showKeypadDialog(): View.OnClickListener? {
+        Timber.d("About to show keypadDialog1")
+        return View.OnClickListener {
+            Timber.d("About to show keypadDialog2")
+
+            val dialog = KeypadFragment.newInstance("parm1", "parm2")
+            dialog.show(supportFragmentManager, "KeypadDialog")
+        }
+    }
+
+
     private fun setFullscreen() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             window.attributes.layoutInDisplayCutoutMode =
