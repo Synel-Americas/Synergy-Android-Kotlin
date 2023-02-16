@@ -1,0 +1,205 @@
+syntax = "proto3";
+
+option java_package = "com.synel.synergyt.synergykotlin.datastore";//Replace it with your package.
+option java_multiple_files = true;
+
+message SynergyPreferences{
+  Provision provision = 1;
+}
+
+message PunchMenu{
+  int32 keyNumber = 1;
+  int32 eventCode = 2;
+  string label = 3;
+  string action = 4;
+  int32 attest_profile = 5;
+  string menuIcon = 6;
+  bool addClosePunch = 7;
+  bool visitorAllowed = 8;
+  string closePunchEventCode = 9;
+  bool enablePhotoCapture = 10;
+  CodeLevels codeLevels = 11;
+  Rule rules = 12;
+}
+
+message Rule{
+  repeated string rule = 1;
+}
+
+message CodeLevels{
+  repeated CodeLevel codeLevel = 1;
+}
+
+message CodeLevel{
+  int32 level = 1;
+  string code = 2;
+  bool skippable = 3;
+}
+
+message PunchMenus{
+  repeated PunchMenu punchMenu = 1;
+}
+
+message AttendanceRule{
+  bool fastPunchEnable = 1;
+  bool enableTimeLaborCode = 2;
+  string nonScheduledDefaultPunchState = 3;
+  bool attendanceStateCalculator = 4;
+  int32 nonScheduledCalculationRule = 5;
+  int32 nonScheduledLongestHour = 6;
+  bool fastPunchDisplayMessage = 7;
+  bool level1Skip = 8;
+  bool level2Skip = 9;
+  bool level3Skip = 10;
+  bool level4Skip = 11;
+  bool level5Skip = 12;
+  bool level6Skip = 13;
+  bool enablePhotoCapture = 14;
+  int32 consecutivePunchLockoutPeriod = 15;
+  int32 mealBreakLockoutPeriod = 16;
+  bool logMealBreakLockedoutPunchData = 17;
+  bool enableClockLevelShiftScheduleLockout = 18;
+  int32 shiftStartGracePeriod = 19;
+  int32 shiftEndGracePeriod = 20;
+  bool logScheduleLockedoutPunchData = 21;
+  bool verificationFailedPunchData = 22;
+  bool enableMealLockout = 23;
+  string acceptConsecutiveLockoutPunch = 24;
+  string shiftScheduleDataUnavailablePunchAction = 25;
+  bool enableGeneralAttestation = 26;
+  bool denyOfflineFastPunch = 27;
+  string shiftDataUnavailablePunchAction = 28;
+  bool enableGlobalLockoutOverride = 29;
+  string lockoutOverrideStartTime = 30;
+  string lockoutOverrideEndTime = 31;
+  string acceptAttestationRejectedPunch = 32;
+  bool showAttestationOnlyOncePerDay = 33;
+  bool showPhotoPreviewOnPunchFeedback = 34;
+}
+
+message ThermalModule{
+  bool enableThermalModule = 1;
+  bool recordTemperature = 2;
+  bool acceptThermalFailurePunches = 3;
+  string temperatureUnit = 4;
+  string bodyTempThreshold = 5;
+  string bodyTempThresholdLow = 6;
+  string highBodyTempPunchAction = 7;
+  string lowBodyTempPunchAction = 8;
+  string highBodyTempFastPunchAction = 9;
+  string lowBodyTempFastPunchAction = 10;
+  int32 highBodyTempOverrideScreenTimeout = 11;
+  bool enableMotionBasedThermalDetection = 12;
+  string motionBasedThermalSamples = 13;
+  string eyeDetectionUpperLimit = 14;
+  string eyeDetectionLowerLimit = 15;
+  string eyeDetectionLeftLimit = 16;
+  string eyeDetectionRightLimit = 17;
+  string lowBodyTemperaturePunchAction = 18;
+}
+
+message FaceRecognitionModule{
+  bool enableFacialDetection = 1;
+  int32 faceRecognitionThreshold = 2;
+  bool acceptMaskFailurePunches = 3;
+  string maskAbsentPunchAction = 4;
+  int32 faceEnrollThreshold = 5;
+  bool enableFaceRecognitionWithMask = 6;
+}
+
+message FingerPrintSetup{
+  string enrollmentThreshold = 1;
+  bool enableFingerprintDetection = 2;
+  string matchThreshold = 3;
+  string trialTimesForMatching = 4;
+  bool displayFingerprintImage = 5;
+}
+
+message BadgeSetup{
+  bool supportRFIDReader = 1;
+  bool supportSmartCardReader = 2;
+  bool supportBarcodeReader = 3;
+  bool supportMagneticReader = 4;
+}
+
+message WiegandSetup{
+  string cardFormat = 1;
+  string startBit = 2;
+  string endBit = 3;
+}
+message SmartCardSetup{
+  string startBit = 1;
+  string endBit = 2;
+}
+message MagneticCardSetup{
+  string truncateCardNumber = 1;
+  string startPosition = 2;
+  string cardSize = 3;
+}
+
+message BarcodeCardSetup{
+  string truncateCardNumber = 1;
+  string startPosition = 2;
+  string cardSize = 3;
+}
+
+message AccessControlSetup{
+  bool enableAccessControl = 1;
+  bool enableRelay1 = 2;
+  bool enableRelay2 = 3;
+  string relayTimeout = 4;
+}
+
+message CameraSetup{
+  bool enablePhotoCapture = 1;
+  bool displayPreview = 2;
+  string previewTimeout = 3;
+  string photoCaptureCondition = 4;
+}
+
+message DeviceSetup{
+  ThermalModule thermModule = 1;
+  FaceRecognitionModule faceModule = 2;
+  BadgeSetup badgeSetup = 3;
+  WiegandSetup wiegandSetup = 4;
+  SmartCardSetup smartCardSetup = 5;
+  MagneticCardSetup magneticCardSetup = 6;
+  BarcodeCardSetup barcodeCardSetup = 7;
+  FingerPrintSetup fingerModule = 8;
+  AccessControlSetup accessControlSetup = 9;
+  CameraSetup cameraSetup = 10;
+}
+
+message VisitorAttestationModule{
+  bool enableVisitorAttestationModule = 1;
+  bool enableVisitorPhotoCapture = 2;
+  int32 visitorAttestationProfile = 3;
+  bool enableEmployeeVisitorLog = 4;
+}
+
+message Provision{
+  PunchMenus punchMenus = 1;
+  AttendanceRule attendanceRule = 2;
+  string serverTime = 3;
+  string deviceLanguage = 4;
+  string timezone = 5;
+  int32 heartbeatInterval = 6;
+  int32 timesyncInterval = 7;
+  string homeDateFormat = 8;
+  string homeTimeFormat = 9;
+  string innerDateFormat = 10;
+  string innerTimeFormat = 11;
+  string deviceName = 12;
+  string clientLogoUrl = 13;
+  int32 soundLevel = 14;
+  bool enablePersonalMessage = 15;
+  bool enableMealAttestation = 16;
+  bool fp_attestation_choice = 17;
+  int32 brightnessLevel = 18;
+  string messagePrivilege = 19;
+  string messageLockoutStartTime = 20;
+  string messageLockoutEndTime = 21;
+  bool enableVisitorModule = 22;
+  DeviceSetup deviceSetup = 23;
+  VisitorAttestationModule visitorAttestationModule = 24;
+}
