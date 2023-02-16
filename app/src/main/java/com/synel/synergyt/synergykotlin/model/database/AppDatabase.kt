@@ -13,9 +13,12 @@ import com.synel.synergyt.synergykotlin.model.database.model.WebserviceCommandEn
 
 @Database(
     entities = [EmployeeEntity::class,
-        TransactionDataEntity::class], version = 1
+        TransactionDataEntity::class,
+        WebserviceCommandEntity::class], version = 1
 )
+@TypeConverters(GenericsConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun employeeDao(): EmployeeDao
     abstract fun transactionDao(): TransactionDataDao
+    abstract fun webServiceCommandDao(): WebServiceCommandDao
 }

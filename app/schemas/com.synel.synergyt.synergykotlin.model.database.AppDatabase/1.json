@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "deb5b23c345308ca36624382ffe124de",
+    "identityHash": "0bb3b1f9ccccef03b670f2a66cae2e12",
     "entities": [
       {
         "tableName": "Employee",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`badgeNumber` TEXT NOT NULL, `badgeAltNumber` TEXT NOT NULL, `clock_action` TEXT NOT NULL, `devicePassword` TEXT NOT NULL, `deviceRoleId` TEXT NOT NULL, `deviceVerifyMode` TEXT NOT NULL, `employeeNumber` TEXT NOT NULL, `enableMealAttestation` TEXT NOT NULL, `enableMealLockout` TEXT NOT NULL, `enforceSchedule` INTEGER NOT NULL, `faceAttestationAccepted` INTEGER NOT NULL, `faceAttestationDate` TEXT NOT NULL, `faceAttestationDeviceSn` TEXT NOT NULL, `firstName` TEXT NOT NULL, `formattedName` TEXT NOT NULL, `fpAttestationAccepted` INTEGER NOT NULL, `fpAttestationDate` TEXT NOT NULL, `fpAttestationDeviceSn` TEXT NOT NULL, `managerEmployeeNum` TEXT NOT NULL, `mealBreakLockoutPeriod` TEXT NOT NULL, `submitted_date` TEXT NOT NULL, `sync_sent_time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL, `transactionId` INTEGER NOT NULL, `updated_date` TEXT NOT NULL, PRIMARY KEY(`badgeNumber`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`badgeNumber` TEXT NOT NULL, `badgeAltNumber` TEXT NOT NULL, `command` TEXT NOT NULL, `devicePassword` TEXT NOT NULL, `deviceRoleId` INTEGER NOT NULL, `employeeName` TEXT NOT NULL, `employeeNo` TEXT NOT NULL, `enableMealAttestation` INTEGER NOT NULL, `enableMealLockout` INTEGER NOT NULL, `enforceSchedule` INTEGER NOT NULL, `faceAttestationAccepted` INTEGER NOT NULL, `faceAttestationDate` TEXT NOT NULL, `faceAttestationDeviceSn` TEXT NOT NULL, `fpAttestationAccepted` INTEGER NOT NULL, `fpAttestationDate` TEXT NOT NULL, `fpAttestationDeviceSn` TEXT NOT NULL, `managerEmployeeNum` TEXT NOT NULL, `mealBreakLockoutPeriod` TEXT NOT NULL, `verifyMode` TEXT NOT NULL, PRIMARY KEY(`employeeNo`))",
         "fields": [
           {
             "fieldPath": "badgeNumber",
@@ -21,8 +21,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "clock_action",
-            "columnName": "clock_action",
+            "fieldPath": "command",
+            "columnName": "command",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -35,31 +35,31 @@
           {
             "fieldPath": "deviceRoleId",
             "columnName": "deviceRoleId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "employeeName",
+            "columnName": "employeeName",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "deviceVerifyMode",
-            "columnName": "deviceVerifyMode",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "employeeNumber",
-            "columnName": "employeeNumber",
+            "fieldPath": "employeeNo",
+            "columnName": "employeeNo",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "enableMealAttestation",
             "columnName": "enableMealAttestation",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
             "fieldPath": "enableMealLockout",
             "columnName": "enableMealLockout",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -83,18 +83,6 @@
           {
             "fieldPath": "faceAttestationDeviceSn",
             "columnName": "faceAttestationDeviceSn",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "firstName",
-            "columnName": "firstName",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "formattedName",
-            "columnName": "formattedName",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -129,41 +117,225 @@
             "notNull": true
           },
           {
-            "fieldPath": "submitted_date",
-            "columnName": "submitted_date",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "sync_sent_time",
-            "columnName": "sync_sent_time",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "sync_status",
-            "columnName": "sync_status",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "transactionId",
-            "columnName": "transactionId",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "updated_date",
-            "columnName": "updated_date",
+            "fieldPath": "verifyMode",
+            "columnName": "verifyMode",
             "affinity": "TEXT",
             "notNull": true
           }
         ],
         "primaryKey": {
+          "autoGenerate": false,
           "columnNames": [
-            "badgeNumber"
-          ],
-          "autoGenerate": false
+            "employeeNo"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "TransactionData",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `attendanceKey` TEXT NOT NULL, `customV1` TEXT NOT NULL, `customV2` TEXT NOT NULL, `customV3` TEXT NOT NULL, `customV4` TEXT NOT NULL, `customV5` TEXT NOT NULL, `customV6` TEXT NOT NULL, `customV7` TEXT NOT NULL, `customV8` TEXT NOT NULL, `customV9` TEXT NOT NULL, `customV10` TEXT NOT NULL, `customV11` TEXT NOT NULL, `empMaskStatus` INTEGER NOT NULL, `empTemperature` TEXT NOT NULL, `employeeNumber` TEXT NOT NULL, `eventCode` TEXT NOT NULL, `fpIndex` TEXT NOT NULL, `issueType` TEXT NOT NULL, `nonCheckFlag` INTEGER NOT NULL, `punchDate` TEXT NOT NULL, `punchMode` TEXT NOT NULL, `punch_photo_template` TEXT NOT NULL, `status` TEXT NOT NULL, `verifyType` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "attendanceKey",
+            "columnName": "attendanceKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customV1",
+            "columnName": "customV1",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customV2",
+            "columnName": "customV2",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customV3",
+            "columnName": "customV3",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customV4",
+            "columnName": "customV4",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customV5",
+            "columnName": "customV5",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customV6",
+            "columnName": "customV6",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customV7",
+            "columnName": "customV7",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customV8",
+            "columnName": "customV8",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customV9",
+            "columnName": "customV9",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customV10",
+            "columnName": "customV10",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "customV11",
+            "columnName": "customV11",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "empMaskStatus",
+            "columnName": "empMaskStatus",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "empTemperature",
+            "columnName": "empTemperature",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "employeeNumber",
+            "columnName": "employeeNumber",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eventCode",
+            "columnName": "eventCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fpIndex",
+            "columnName": "fpIndex",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "issueType",
+            "columnName": "issueType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nonCheckFlag",
+            "columnName": "nonCheckFlag",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "punchDate",
+            "columnName": "punchDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "punchMode",
+            "columnName": "punchMode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "punch_photo_template",
+            "columnName": "punch_photo_template",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "verifyType",
+            "columnName": "verifyType",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "WebserviceCommand",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `isProcessed` INTEGER NOT NULL, `commandType` TEXT NOT NULL, `receiveDate` TEXT NOT NULL, `commandObject` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isProcessed",
+            "columnName": "isProcessed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "commandType",
+            "columnName": "commandType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "receiveDate",
+            "columnName": "receiveDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "commandObject",
+            "columnName": "commandObject",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
         },
         "indices": [],
         "foreignKeys": []
@@ -172,7 +344,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'deb5b23c345308ca36624382ffe124de')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0bb3b1f9ccccef03b670f2a66cae2e12')"
     ]
   }
 }
