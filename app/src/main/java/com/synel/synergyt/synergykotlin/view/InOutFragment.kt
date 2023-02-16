@@ -22,6 +22,10 @@ private const val ARG_PARAM2 = "param2"
  */
 class InOutFragment : Fragment() {
 
+    lateinit var button1: RelativeLayout
+    lateinit var button2: RelativeLayout
+
+
     companion object {
         fun newInstance(label1: String, label2: String, fragmentName: String): InOutFragment {
             val fragment = InOutFragment()
@@ -32,6 +36,10 @@ class InOutFragment : Fragment() {
             fragment.arguments = args
             return fragment
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -48,6 +56,8 @@ class InOutFragment : Fragment() {
         label1.text = label1Value
         label2.text = label2Value
 
+        button1 = view.findViewById<RelativeLayout>(R.id.button1)
+        button2 = view.findViewById<RelativeLayout>(R.id.button2)
         // Add onClickListener to button1
         view.findViewById<RelativeLayout>(R.id.button1).setOnClickListener {
             // Perform action when button1 is clicked
@@ -60,4 +70,11 @@ class InOutFragment : Fragment() {
 
         return view
     }
+
+//    fun setButton1ClickListener(){
+//        button1.setOnClickListener{
+//
+//        }
+//    }
+//    fun setButton2ClickListener(){}
 }

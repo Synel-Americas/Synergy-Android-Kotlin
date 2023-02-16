@@ -2,17 +2,11 @@ package com.synel.synergyt.synergykotlin.view
 
 import android.os.Build
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
-import android.widget.EditText
-import android.widget.FrameLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -21,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.synel.synergyt.synergykotlin.R
 import com.synel.synergyt.synergykotlin.databinding.ActivityMainBinding
 import com.synel.synergyt.synergykotlin.di.MainViewModelFactory
-import com.synel.synergyt.synergykotlin.model.database.Employee
+import com.synel.synergyt.synergykotlin.model.database.model.EmployeeEntity
 import com.synel.synergyt.synergykotlin.viewmodel.MainViewModel
 import com.synel.synergyt.synergykotlin.viewmodel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,56 +37,40 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = this
 
+//        binding.fragmentContainer.getFragment<InOutFragment>().setButton1ClickListener()
         setFullscreen()
 
 
-
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
         sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
-        val employee = Employee(
+        val employee = EmployeeEntity(
             badgeNumber = "1256",
             badgeAltNumber = "789012",
-            clock_action = "clock_in",
             devicePassword = "password",
-            deviceRoleId = "1",
-            deviceVerifyMode = "fingerprint",
-            employeeNumber = "E123456",
-            enableMealAttestation = "true",
-            enableMealLockout = "false",
+            deviceRoleId = 1,
+            enableMealAttestation = true,
+            enableMealLockout = false,
             enforceSchedule = true,
             faceAttestationAccepted = true,
             faceAttestationDate = "2022-01-01",
             faceAttestationDeviceSn = "device_123",
-            firstName = "John",
-            formattedName = "John Smith",
             fpAttestationAccepted = true,
             fpAttestationDate = "2022-01-01",
             fpAttestationDeviceSn = "device_123",
             managerEmployeeNum = "E789012",
             mealBreakLockoutPeriod = "30",
-            submitted_date = "2022-01-01",
-            sync_sent_time = "2022-01-01",
-            sync_status = 1,
-            transactionId = 123,
-            updated_date = "2022-01-01"
         )
 
-        viewModel.text.observe(this, Observer {
+        viewModel.text.observe(this) {
             // data has changed
-        })
+        }
 
 
 
         binding.badgeNumber.startAnimation(AnimationUtils.loadAnimation(this, R.anim.blink))
-
-        binding.badgeNumber.setOnClickListener(
-            showKeypadDialog()
-        )
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             var fragment: Fragment? = null
@@ -100,22 +78,26 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> {
                     // Handle navigation to menu item 1
                     fragment = InOutFragment.newInstance("Clock Out", "Clock In", "Fragment 1")
-                    Log.d(TAG, "bottomNavigation: 1")
+                    Timber.d("bottomNavigation: 1")
                 }
                 R.id.nav_lunch -> {
                     // Handle navigation to menu item 2
                     fragment = InOutFragment.newInstance("Start Lunch", "End Lunch", "Fragment 2")
-                    Log.d(TAG, "bottomNavigation: 2")
+                    Timber.d("bottomNavigation: 2")
+//                    viewModel.sendPunch()
+//                    viewModel.getProvision()
+//                    viewModel.getEmployees(resources)
+                    viewModel.getHeartbeat()
                 }
                 R.id._break -> {
                     // Handle navigation to menu item 2
                     fragment = InOutFragment.newInstance("Start Break", "End Break", "Fragment 3")
-                    Log.d(TAG, "bottomNavigation: 3")
+                    Timber.d("bottomNavigation: 3")
                 }
                 R.id.nav_transfer -> {
                     // Handle navigation to menu item 2
                     fragment = InOutFragment.newInstance("Label 1", "Label 2", "Fragment 4")
-                    Log.d(TAG, "bottomNavigation: 4")
+                    Timber.d("bottomNavigation: 4")
                 }
 
                 // Add additional cases for other menu items here
@@ -128,7 +110,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-        binding.bottomNavigation.selectedItemId = R.id.home;
+        binding.bottomNavigation.selectedItemId = R.id.home
 
 //        val dialog = KeypadFragment.newInstance("parm1", "parm2")
 //        dialog.show(supportFragmentManager, "KeypadDialog")
